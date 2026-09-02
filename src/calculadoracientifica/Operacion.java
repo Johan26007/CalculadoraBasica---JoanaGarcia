@@ -237,7 +237,7 @@ class Coseno extends Operacion {
     public void operar() {
         double radianes;
         radianes = Math.toRadians(this.num1);
-        this.resultado = Math.sin(radianes);
+        this.resultado = Math.cos(radianes);
     }
 }
 
@@ -260,8 +260,46 @@ class Tangente extends Operacion {
 
     @Override
     public void operar() {
-        double radianes;
-        radianes = Math.toRadians(this.num1);
-        this.resultado = Math.sin(radianes);
+        if (this.num1 % 90 == 0) {
+            System.out.println("La tangente de " + this.num1 + " es indefinida.");
+            this.resultado = Double.NaN;
+        } else {
+            double radianes = Math.toRadians(this.num1);
+            this.resultado = Math.tan(radianes);
+        }
+    }
+}
+
+class TrinomioCuadradoPerfecto extends Operacion {
+
+    private String var;
+    private double a, b, c;
+
+    @Override
+    public void ingresar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese la variable: ");
+        this.var = sc.next();
+        System.out.print("Ingrese el termino 1: ");
+        this.a = sc.nextDouble();
+        System.out.print("Ingrese el termino 2: ");
+        this.b = sc.nextDouble();
+        System.out.print("Ingrese el termino 3 (constante): ");
+        this.c = sc.nextDouble();
+    }
+
+    @Override
+    public void operar() {
+        double r1 = Math.sqrt(Math.abs(a));
+        double r3 = Math.sqrt(Math.abs(c));
+
+        if (Math.abs(Math.abs(b) - (2 * r1 * r3)) < 0.0001) {
+            String signo = (b >= 0) ? "+" : "-";
+            String t1 = (r1 == 1) ? var : r1 + var;
+
+            System.out.println("Resultado: (" + t1 + " " + signo + " " + r3 + ")²");
+        } else {
+            System.out.println("No es un Trinomio Cuadrado Perfecto.");
+        }
     }
 }

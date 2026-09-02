@@ -1,14 +1,10 @@
 package calculadoracientifica;
-
 import java.util.Scanner;
-
 public class CalculadoraCientifica {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Operacion operacion = null;
         int opcion = 0;
-
         while (opcion != 10) {
             System.out.println("**** CALCULADORA CIENTIFICA ****");
             System.out.println("1. Sumar");
@@ -20,7 +16,8 @@ public class CalculadoraCientifica {
             System.out.println("7. Seno");
             System.out.println("8. Coseno");
             System.out.println("9. Tangente");
-            System.out.println("10. Salir");
+            System.out.println("10. Trinomio cuadrado perfecto:");
+            System.out.println("11. Salir");
             System.out.println("Seleccione una opcion: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -45,6 +42,8 @@ public class CalculadoraCientifica {
                 case 9 ->
                     operacion = new Tangente();
                 case 10 ->
+                    operacion = new TrinomioCuadradoPerfecto();
+                case 11 ->
                     System.out.println("Saliendo del programa...");
                 default -> {
                     System.out.println("Opcion invalida...");
@@ -56,7 +55,6 @@ public class CalculadoraCientifica {
                 operacion.operar();
                 operacion.imprimir();
             }
-
         }
     }
     }
